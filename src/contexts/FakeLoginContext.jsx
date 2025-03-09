@@ -6,7 +6,7 @@ function reducer(state, action) {}
 function LoginContextProvider() {
   const [state, dispatch] =
     useReducer[(reducer, { login: null, authentication: false })];
-  function Login() {}
+  function Login(user) {}
   <LoginContext.Provider></LoginContext.Provider>;
 }
 function useAuth() {
