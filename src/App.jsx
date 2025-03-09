@@ -11,28 +11,34 @@ import CountryList from "./components/CountryList";
 import City from "./components/City";
 import Form from "./components/Form";
 import { CitiesProvider } from "./contexts/CitiesContext";
+import { LoginContextProvider } from "./contexts/FakeLoginContext";
 function App() {
   return (
     <div>
-      <CitiesProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/homepage" element={<HomePage />} />
-            <Route path="pricing" element={<Pricing />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="app" element={<AppLayout />}>
-              <Route index element={<Navigate to="cities" replace={true} />} />
-              <Route path="cities" element={<CityList />} />
-              <Route path="cities/:id" element={<City />} />
-              <Route path="countries" element={<CountryList />} />
-              <Route path="form" element={<Form />} />
-            </Route>
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </CitiesProvider>
+      <LoginContextProvider>
+        <CitiesProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/homepage" element={<HomePage />} />
+              <Route path="pricing" element={<Pricing />} />
+              <Route path="/product" element={<Product />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="app" element={<AppLayout />}>
+                <Route
+                  index
+                  element={<Navigate to="cities" replace={true} />}
+                />
+                <Route path="cities" element={<CityList />} />
+                <Route path="cities/:id" element={<City />} />
+                <Route path="countries" element={<CountryList />} />
+                <Route path="form" element={<Form />} />
+              </Route>
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </CitiesProvider>
+      </LoginContextProvider>
     </div>
   );
 }
